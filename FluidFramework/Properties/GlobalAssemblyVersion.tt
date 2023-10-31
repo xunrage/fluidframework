@@ -1,0 +1,13 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+using System.Reflection;
+[assembly: AssemblyVersion("2.0.<#= this.RevisionNumber #>")]
+<#+
+    string RevisionNumber = GetVersion();
+
+    static string GetVersion()
+    {
+        DateTime d = DateTime.Now;
+        return (int)(d - new DateTime(2000, 1, 1)).TotalDays + "." + ((int)(d - d.Date).TotalSeconds / 300 * 150);
+    }
+#>

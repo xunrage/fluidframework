@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>xunRAGE.FluidFramework.SQLite</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>xunRAGE</authors>
+    <owners>xunRAGE</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Extension library for SQLite database access. Requires .NET Framework 4.8.</description>
+    <releaseNotes>Version 2</releaseNotes>
+    <license type="expression">MIT</license>
+    <copyright>Copyright © 2016-2023 xunRAGE</copyright>
+    <tags>backend data framework</tags>
+    <dependencies>
+        <group targetFramework=".NETFramework4.8">
+            <dependency id="xunRAGE.FluidFramework" version="2.0.8705.0" exclude="Build,Analyzers" />
+            <dependency id="Stub.System.Data.SQLite.Core.NetFramework" version="1.0.118.0" exclude="Build,Analyzers" />
+            <dependency id="System.Data.SQLite.Core" version="1.0.118.0" exclude="Build,Analyzers" />
+        </group>
+    </dependencies>
+  </metadata>
+</package>

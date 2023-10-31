@@ -1,0 +1,8 @@
+FluidFramework/bin/
+FluidFramework/obj/
+FluidFramework.MySql/bin/
+FluidFramework.MySql/obj/
+FluidFramework.Oracle/bin/
+FluidFramework.Oracle/obj/
+FluidFramework.SQLite/bin/
+FluidFramework.SQLite/obj/
