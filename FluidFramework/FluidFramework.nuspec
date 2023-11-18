@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>xunRAGE.FluidFramework</id>
     <version>$version$</version>
@@ -12,6 +12,8 @@
     <license type="expression">MIT</license>
     <copyright>Copyright © 2016-2023 xunRAGE</copyright>
     <tags>backend data framework</tags>
+	<projectUrl>https://github.com/xunrage/fluidframework</projectUrl>
+	<repository type="git" url="https://github.com/xunrage/fluidframework.git" commit="df01c5b69628a65a3cbecc1bc1f0d26d83a849eb" />
     <dependencies>
         <group targetFramework=".NETFramework4.8">
         </group>

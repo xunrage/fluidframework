@@ -36,8 +36,8 @@
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>..\packages\BouncyCastle.Cryptography.2.2.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Protobuf, Version=3.24.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Protobuf.3.24.4\lib\net45\Google.Protobuf.dll</HintPath>
+    <Reference Include="Google.Protobuf, Version=3.25.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.25.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
     <Reference Include="K4os.Compression.LZ4, Version=1.3.6.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Compression.LZ4.1.3.6\lib\net462\K4os.Compression.LZ4.dll</HintPath>
@@ -48,8 +48,8 @@
     <Reference Include="K4os.Hash.xxHash, Version=1.0.8.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Hash.xxHash.1.0.8\lib\net462\K4os.Hash.xxHash.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=8.2.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.2.0\lib\net48\MySql.Data.dll</HintPath>
@@ -61,8 +61,8 @@
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Configuration.ConfigurationManager, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Configuration.ConfigurationManager.7.0.0\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
+    <Reference Include="System.Configuration.ConfigurationManager, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.8.0.0\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
@@ -70,13 +70,14 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.OracleClient" />
-    <Reference Include="System.Diagnostics.DiagnosticSource, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.7.0.2\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.0\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Design" />
-    <Reference Include="System.IO.Pipelines, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Pipelines.7.0.0\lib\net462\System.IO.Pipelines.dll</HintPath>
+    <Reference Include="System.IO.Pipelines, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.8.0.0\lib\net462\System.IO.Pipelines.dll</HintPath>
     </Reference>
     <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -94,8 +95,8 @@
     <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
     </Reference>
-    <Reference Include="System.Security.Permissions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Permissions.7.0.0\lib\net462\System.Security.Permissions.dll</HintPath>
+    <Reference Include="System.Security.Permissions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.8.0.0\lib\net462\System.Security.Permissions.dll</HintPath>
     </Reference>
     <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
@@ -119,23 +120,11 @@
     <Compile Include="Business\MySqlServiceManager.cs" />
     <Compile Include="Context\MySqlServerConnection.cs" />
     <Compile Include="Data\MySqlAdapterConfiguration.cs" />
-    <Compile Include="Data\MySqlBridgeDataService.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Data\MySqlBridgeDataService.Designer.cs">
-      <DependentUpon>MySqlBridgeDataService.cs</DependentUpon>
-    </Compile>
     <Compile Include="Data\MySqlDataService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\MySqlDataService.Designer.cs">
       <DependentUpon>MySqlDataService.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Data\MySqlExtendedDataService.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Data\MySqlExtendedDataService.Designer.cs">
-      <DependentUpon>MySqlExtendedDataService.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\MySqlFluidAdapter.cs" />
     <Compile Include="Data\MySqlFluidSelector.cs" />
@@ -154,14 +143,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Data\MySqlBridgeDataService.resx">
-      <DependentUpon>MySqlBridgeDataService.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Data\MySqlDataService.resx">
       <DependentUpon>MySqlDataService.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Data\MySqlExtendedDataService.resx">
-      <DependentUpon>MySqlExtendedDataService.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

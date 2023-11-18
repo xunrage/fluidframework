@@ -166,12 +166,14 @@ namespace FluidFramework.MySql.Data
         }
 
         /// <summary>
-        /// Constructor with a given global connection and transaction.
+        /// Helper property to create a new DataService instance.
         /// </summary>
-        public MySqlDataService(MySqlConnection connection, MySqlTransaction transaction)
+        public static MySqlDataService New
         {
-            InitializeComponent();
-            GlobalInitialize(connection, transaction);
+            get
+            {
+                return new MySqlDataService();
+            }
         }
 
         #endregion
@@ -194,16 +196,38 @@ namespace FluidFramework.MySql.Data
         }
 
         /// <summary>
-        /// Sets the global connection and transaction.
+        /// Sets the global connection, transaction and command timeout.
         /// </summary>
-        protected void GlobalInitialize(MySqlConnection connection, MySqlTransaction transaction)
+        public MySqlDataService GlobalInitialize(MySqlConnection connection, MySqlTransaction transaction, int? commandTimeout)
         {
             _connectionString = null;
-            _commandTimeout = null;
+            _commandTimeout = commandTimeout;
             _autoRefreshConnection = false;
             GlobalConnection = connection;      // sets _useGlobalConnectivity
             GlobalTransaction = transaction;    // sets _useTransaction
             _performOrder = ClientContext.Instance.Properties.CurrentPerformOrder;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Inherits all the properties from another service.
+        /// </summary>
+        public MySqlDataService ServiceInitialize(MySqlDataService service)
+        {
+            if (service != null)
+            {
+                _connectionString = service.ConnectionString;
+                _commandTimeout = service.CommandTimeout;
+                _autoRefreshConnection = service.AutoRefreshConnection;
+                _globalConnection = service.GlobalConnection;
+                _globalTransaction = service.GlobalTransaction;
+                _useGlobalConnectivity = service.UseGlobalConnectivity;
+                _useTransaction = service.UseTransaction;
+                _performOrder = service.PerformOrder;
+            }
+
+            return this;
         }
 
         /// <summary>
@@ -578,6 +602,22 @@ namespace FluidFramework.MySql.Data
         {
             RollbackTransaction(GlobalTransaction);
             GlobalTransaction = null;
+        }
+
+        /// <summary>
+        /// Inherits global connectivity from another service.
+        /// </summary>
+        public void ShareGlobalConnectivity(MySqlDataService service)
+        {
+            if (service != null)
+            {
+                _connectionString = null;
+                _commandTimeout = service.CommandTimeout;
+                _autoRefreshConnection = false;
+                GlobalConnection = service.GlobalConnection;      // sets _useGlobalConnectivity
+                GlobalTransaction = service.GlobalTransaction;    // sets _useTransaction
+                _performOrder = service.PerformOrder;
+            }
         }
 
         #endregion

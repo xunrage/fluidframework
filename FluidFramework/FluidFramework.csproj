@@ -84,12 +84,6 @@
     <Compile Include="Data\AdapterConfiguration.cs" />
     <Compile Include="Data\IAdapterConfiguration.cs" />
     <Compile Include="SqlServer\Data\SqlServerAdapterConfiguration.cs" />
-    <Compile Include="SqlServer\Data\SqlServerBridgeDataService.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="SqlServer\Data\SqlServerBridgeDataService.Designer.cs">
-      <DependentUpon>SqlServerBridgeDataService.cs</DependentUpon>
-    </Compile>
     <Compile Include="Data\DalUtility.cs" />
     <Compile Include="SqlServer\Data\SqlServerDataService.cs">
       <SubType>Component</SubType>
@@ -98,12 +92,6 @@
       <DependentUpon>SqlServerDataService.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\Delegates.cs" />
-    <Compile Include="SqlServer\Data\SqlServerExtendedDataService.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="SqlServer\Data\SqlServerExtendedDataService.Designer.cs">
-      <DependentUpon>SqlServerExtendedDataService.cs</DependentUpon>
-    </Compile>
     <Compile Include="SqlServer\Data\SqlServerFluidAdapter.cs" />
     <Compile Include="SqlServer\Data\SqlServerFluidSelector.cs" />
     <Compile Include="Data\ParameterInfo.cs" />
@@ -118,14 +106,8 @@
     <Compile Include="Utilities\StringProtect.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SqlServer\Data\SqlServerBridgeDataService.resx">
-      <DependentUpon>SqlServerBridgeDataService.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SqlServer\Data\SqlServerDataService.resx">
       <DependentUpon>SqlServerDataService.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SqlServer\Data\SqlServerExtendedDataService.resx">
-      <DependentUpon>SqlServerExtendedDataService.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

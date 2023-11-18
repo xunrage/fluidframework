@@ -52,23 +52,11 @@
     <Compile Include="Business\SqliteServiceManager.cs" />
     <Compile Include="Context\SqliteConnection.cs" />
     <Compile Include="Data\SqliteAdapterConfiguration.cs" />
-    <Compile Include="Data\SqliteBridgeDataService.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Data\SqliteBridgeDataService.Designer.cs">
-      <DependentUpon>SqliteBridgeDataService.cs</DependentUpon>
-    </Compile>
     <Compile Include="Data\SqliteDataService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\SqliteDataService.Designer.cs">
       <DependentUpon>SqliteDataService.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Data\SqliteExtendedDataService.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Data\SqliteExtendedDataService.Designer.cs">
-      <DependentUpon>SqliteExtendedDataService.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\SqliteFluidAdapter.cs" />
     <Compile Include="Data\SqliteFluidSelector.cs" />
@@ -81,14 +69,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Data\SqliteBridgeDataService.resx">
-      <DependentUpon>SqliteBridgeDataService.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Data\SqliteDataService.resx">
       <DependentUpon>SqliteDataService.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Data\SqliteExtendedDataService.resx">
-      <DependentUpon>SqliteExtendedDataService.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

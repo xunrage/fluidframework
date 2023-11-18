@@ -25,7 +25,7 @@ namespace FluidFramework.SqlServer.Data
         public bool ConditionStart { get; set; }
 
         /// <summary>
-        /// Helper method to create a new FluidAdapter instance.
+        /// Helper property to create a new FluidAdapter instance.
         /// </summary>
         public static SqlServerFluidAdapter New
         {

@@ -6,3 +6,5 @@ FluidFramework.Oracle/bin/
 FluidFramework.Oracle/obj/
 FluidFramework.SQLite/bin/
 FluidFramework.SQLite/obj/
+.vs/
+packages/
