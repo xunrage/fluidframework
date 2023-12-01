@@ -71,6 +71,7 @@ namespace FluidFramework.Utilities
             {
                 _dataset = null;
                 IsLoaded = false;
+                HasChanges = false;
                 string content = null;
 
                 if (UseIsolatedStorage)
@@ -118,6 +119,7 @@ namespace FluidFramework.Utilities
             {
                 _dataset = null;
                 IsLoaded = false;
+                HasChanges = false;
                 IsLoaded = LoadContent(content);
                 return IsLoaded;
             }

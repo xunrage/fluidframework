@@ -16,7 +16,7 @@
 	<repository type="git" url="https://github.com/xunrage/fluidframework.git" commit="df01c5b69628a65a3cbecc1bc1f0d26d83a849eb" />	  
     <dependencies>
         <group targetFramework=".NETFramework4.8">
-            <dependency id="xunRAGE.FluidFramework" version="2.0.8722.0" exclude="Build,Analyzers" />
+            <dependency id="xunRAGE.FluidFramework" version="2.0.8735.0" exclude="Build,Analyzers" />
             <dependency id="Microsoft.Bcl.AsyncInterfaces" version="8.0.0" exclude="Build,Analyzers" />
             <dependency id="Oracle.ManagedDataAccess" version="21.12.0" exclude="Build,Analyzers" />
             <dependency id="System.Buffers" version="4.5.1" exclude="Build,Analyzers" />

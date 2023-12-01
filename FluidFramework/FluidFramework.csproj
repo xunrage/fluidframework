@@ -69,6 +69,7 @@
     <Compile Include="Business\IBaseService.cs" />
     <Compile Include="Business\ServiceManager.cs" />
     <Compile Include="Utilities\DataUtils.cs" />
+    <Compile Include="Utilities\FastStore.cs" />
     <Compile Include="Utilities\FilterScript.cs" />
     <Compile Include="Utilities\MagicSplit.cs" />
     <Compile Include="Utilities\MergeScript.cs" />
