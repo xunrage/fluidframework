@@ -10,16 +10,17 @@
     <description>Extension library for Oracle database access. Requires .NET Framework 4.8.</description>
     <releaseNotes>Version 2</releaseNotes>
     <license type="expression">MIT</license>
-    <copyright>Copyright © 2016-2023 xunRAGE</copyright>
+    <copyright>Copyright © 2016-2024 xunRAGE</copyright>
     <tags>backend data framework</tags>
 	<projectUrl>https://github.com/xunrage/fluidframework</projectUrl>
 	<repository type="git" url="https://github.com/xunrage/fluidframework.git" commit="df01c5b69628a65a3cbecc1bc1f0d26d83a849eb" />	  
     <dependencies>
         <group targetFramework=".NETFramework4.8">
-            <dependency id="xunRAGE.FluidFramework" version="2.0.8735.0" exclude="Build,Analyzers" />
+            <dependency id="xunRAGE.FluidFramework" version="2.0.8768.0" exclude="Build,Analyzers" />
             <dependency id="Microsoft.Bcl.AsyncInterfaces" version="8.0.0" exclude="Build,Analyzers" />
-            <dependency id="Oracle.ManagedDataAccess" version="21.12.0" exclude="Build,Analyzers" />
+            <dependency id="Oracle.ManagedDataAccess" version="21.13.0" exclude="Build,Analyzers" />
             <dependency id="System.Buffers" version="4.5.1" exclude="Build,Analyzers" />
+			<dependency id="System.Formats.Asn1" version="8.0.0" exclude="Build,Analyzers" />
             <dependency id="System.Memory" version="4.5.5" exclude="Build,Analyzers" />
             <dependency id="System.Numerics.Vectors" version="4.5.0" exclude="Build,Analyzers" />
             <dependency id="System.Runtime.CompilerServices.Unsafe" version="6.0.0" exclude="Build,Analyzers" />

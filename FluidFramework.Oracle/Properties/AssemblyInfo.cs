@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("xunRAGE")]
 [assembly: AssemblyProduct("FluidFramework.Oracle")]
-[assembly: AssemblyCopyright("Copyright © 2016-2023 xunRAGE")]
+[assembly: AssemblyCopyright("Copyright © 2016-2024 xunRAGE")]
 [assembly: AssemblyTrademark("xunRAGE")]
 [assembly: AssemblyCulture("")]
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -404,7 +403,9 @@ namespace FluidFramework.Utilities
                         foreach(KeyValuePair<string, ElementStore> element in elements.OrderBy(e => e.Value.Index))
                         {
                             SaveSegment(fs, element.Key);
-                            SaveSegment(fs, element.Value.CurrentValue);                                                      
+                            SaveSegment(fs, element.Value.CurrentValue);
+
+                            element.Value.OriginalValue = element.Value.CurrentValue;
                         }
                     }
                 }
@@ -432,6 +433,8 @@ namespace FluidFramework.Utilities
                                     SaveSegment(fs, element.Key);
                                     SaveSegment(fs, element.Value.CurrentValue);
                                 }
+
+                                element.Value.OriginalValue = element.Value.CurrentValue;
 
                                 if (element.Value.Index == cutOffIndex) break;
                             }
