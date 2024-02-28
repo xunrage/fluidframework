@@ -13,7 +13,7 @@
     <copyright>Copyright © 2016-2024 xunRAGE</copyright>
     <tags>backend data framework</tags>
 	<projectUrl>https://github.com/xunrage/fluidframework</projectUrl>
-	<repository type="git" url="https://github.com/xunrage/fluidframework.git" commit="df01c5b69628a65a3cbecc1bc1f0d26d83a849eb" />
+	<repository type="git" url="https://github.com/xunrage/fluidframework.git" />
     <dependencies>
         <group targetFramework=".NETFramework4.8">
         </group>

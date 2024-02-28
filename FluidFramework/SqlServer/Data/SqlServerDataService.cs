@@ -58,6 +58,11 @@ namespace FluidFramework.SqlServer.Data
         protected PerformOrder _performOrder;
 
         /// <summary>
+        /// Protected member for signaling that the global transaction should be rolled back.
+        /// </summary>
+        protected bool? _forceRollbackGlobalTransaction;
+
+        /// <summary>
         /// Connection string used to create the connection to the SQL Server.        
         /// </summary>
         public string ConnectionString
@@ -143,6 +148,15 @@ namespace FluidFramework.SqlServer.Data
             set { _performOrder = value; }
         }
 
+        /// <summary>
+        /// Signals that the global transaction should be rolled back.
+        /// </summary>
+        public bool? ForceRollbackGlobalTransaction
+        {
+            get { return _forceRollbackGlobalTransaction; }
+            set { _forceRollbackGlobalTransaction = value; }
+        }
+
         #endregion
 
         #region Constructors
@@ -194,12 +208,14 @@ namespace FluidFramework.SqlServer.Data
             _useGlobalConnectivity = false;
             _useTransaction = null;
             _performOrder = ClientContext.Instance.Properties.CurrentPerformOrder;
+            _forceRollbackGlobalTransaction = null;
         }
 
         /// <summary>
         /// Sets the global connection, transaction and command timeout.
         /// </summary>
-        public SqlServerDataService GlobalInitialize(SqlConnection connection, SqlTransaction transaction, int? commandTimeout)
+        public SqlServerDataService GlobalInitialize(SqlConnection connection, SqlTransaction transaction, int? commandTimeout,
+                                                     bool? forceRollbackGlobalTransaction = null)
         {
             _connectionString = null;
             _commandTimeout = commandTimeout;
@@ -207,6 +223,7 @@ namespace FluidFramework.SqlServer.Data
             GlobalConnection = connection;      // sets _useGlobalConnectivity
             GlobalTransaction = transaction;    // sets _useTransaction
             _performOrder = ClientContext.Instance.Properties.CurrentPerformOrder;
+            _forceRollbackGlobalTransaction = forceRollbackGlobalTransaction;
 
             return this;
         }
@@ -226,6 +243,7 @@ namespace FluidFramework.SqlServer.Data
                 _useGlobalConnectivity = service.UseGlobalConnectivity;
                 _useTransaction = service.UseTransaction;
                 _performOrder = service.PerformOrder;
+                _forceRollbackGlobalTransaction = service.ForceRollbackGlobalTransaction;
             }
 
             return this;
@@ -412,9 +430,11 @@ namespace FluidFramework.SqlServer.Data
         {
             _globalConnection = null;
             _globalTransaction = null;
+
             try
             {
                 _useGlobalConnectivity = true;
+                _forceRollbackGlobalTransaction = false;
 
                 _globalConnection = _useTransaction.HasValue ?
                     (_useTransaction.Value ? OpenTransactionalConnection(null, out _globalTransaction) : OpenConnection()) :
@@ -422,16 +442,31 @@ namespace FluidFramework.SqlServer.Data
 
                 if (command != null) if (!command()) throw new Exception("Error: Execution failed.");
 
-                if (_globalTransaction != null) CommitTransaction(_globalTransaction);
+                if (_globalTransaction != null)
+                {
+                    if (_forceRollbackGlobalTransaction.HasValue && _forceRollbackGlobalTransaction.Value)
+                    {
+                        RollbackTransaction(_globalTransaction);
+                    }
+                    else
+                    {
+                        CommitTransaction(_globalTransaction);
+                    }
+                }
             }
             catch (Exception exception)
             {
-                if (_globalTransaction != null) RollbackTransaction(_globalTransaction);
+                if (_globalTransaction != null)
+                {
+                    RollbackTransaction(_globalTransaction);
+                }
+
                 throw new Exception("MultiplePerform method failed. " + exception.Message, exception);
             }
             finally
             {
                 CloseConnection(_globalConnection);
+                _forceRollbackGlobalTransaction = null;
                 _useGlobalConnectivity = false;
                 _globalTransaction = null;
                 _globalConnection = null;
@@ -628,6 +663,7 @@ namespace FluidFramework.SqlServer.Data
                 GlobalConnection = service.GlobalConnection;      // sets _useGlobalConnectivity
                 GlobalTransaction = service.GlobalTransaction;    // sets _useTransaction
                 _performOrder = service.PerformOrder;
+                _forceRollbackGlobalTransaction = service.ForceRollbackGlobalTransaction;
             }
         }
 
