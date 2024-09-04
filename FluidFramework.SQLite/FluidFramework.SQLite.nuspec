@@ -13,10 +13,10 @@
     <copyright>Copyright © 2016-2024 xunRAGE</copyright>
     <tags>backend data framework</tags>
 	<projectUrl>https://github.com/xunrage/fluidframework</projectUrl>
-	<repository type="git" url="https://github.com/xunrage/fluidframework.git" commit="30242caa1307e90d9305330d08271c6e394c5c5c" />
+	<repository type="git" url="https://github.com/xunrage/fluidframework.git" />
 	<dependencies>
         <group targetFramework=".NETFramework4.8">
-            <dependency id="xunRAGE.FluidFramework" version="2.0.8823.0" exclude="Build,Analyzers" />
+            <dependency id="xunRAGE.FluidFramework" version="2.0.9014.0" exclude="Build,Analyzers" />
             <dependency id="Stub.System.Data.SQLite.Core.NetFramework" version="1.0.118.0" exclude="Build,Analyzers" />
             <dependency id="System.Data.SQLite.Core" version="1.0.118.0" exclude="Build,Analyzers" />
         </group>
