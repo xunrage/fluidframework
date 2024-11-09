@@ -392,9 +392,53 @@ namespace FluidFramework.SqlServer.Data
         /// <summary>
         /// Adds the query fragment to the select command.
         /// </summary>
-        public SqlServerFluidAdapter Fragment(string fragment)
+        public SqlServerFluidAdapter Fragment(string fragmentValue)
         {
-            Adapter.SelectCommand.CommandText += " " + fragment;
+            if (String.IsNullOrEmpty(Adapter.SelectCommand.CommandText)) return this;
+            Adapter.SelectCommand.CommandText += " " + fragmentValue;
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a query fragment to a destination point in the select command.
+        /// </summary>
+        public SqlServerFluidAdapter ComplexFragment(string fragmentName, string fragmentValue)
+        {
+            if (String.IsNullOrEmpty(Adapter.SelectCommand.CommandText)) return this;
+
+            Adapter.SelectCommand.CommandText = Adapter.SelectCommand.CommandText
+                .Replace("{" + fragmentName + "}", " " + fragmentValue + "{" + fragmentName + "}");
+
+            return this;
+        }
+
+        /// <summary>
+        /// Removes all fragment destinations from the select command, making the query ready to be executed.
+        /// </summary>
+        public SqlServerFluidAdapter ComplexFragmentCleanUp()
+        {
+            string source = Adapter.SelectCommand.CommandText;
+            if (String.IsNullOrEmpty(source)) return this;
+
+            StringBuilder query = new StringBuilder();
+            bool writeMode = true;
+            for (int index = 0; index < source.Length; index++)
+            {
+                if (source[index] == '{')
+                {
+                    writeMode = false;
+                    query.Append(" ");
+                }
+                else if (source[index] == '}')
+                {
+                    writeMode = true;
+                }
+                else if (writeMode)
+                {
+                    query.Append(source[index]);
+                }
+            }
+            Adapter.SelectCommand.CommandText = query.ToString();
             return this;
         }
 

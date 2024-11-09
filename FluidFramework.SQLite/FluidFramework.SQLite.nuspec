@@ -16,9 +16,9 @@
 	<repository type="git" url="https://github.com/xunrage/fluidframework.git" />
 	<dependencies>
         <group targetFramework=".NETFramework4.8">
-            <dependency id="xunRAGE.FluidFramework" version="2.0.9014.0" exclude="Build,Analyzers" />
-            <dependency id="Stub.System.Data.SQLite.Core.NetFramework" version="1.0.118.0" exclude="Build,Analyzers" />
-            <dependency id="System.Data.SQLite.Core" version="1.0.118.0" exclude="Build,Analyzers" />
+            <dependency id="xunRAGE.FluidFramework" version="2.0.9079.0" exclude="Build,Analyzers" />
+            <dependency id="Stub.System.Data.SQLite.Core.NetFramework" version="1.0.119.0" exclude="Build,Analyzers" />
+            <dependency id="System.Data.SQLite.Core" version="1.0.119.0" exclude="Build,Analyzers" />
         </group>
     </dependencies>
   </metadata>
