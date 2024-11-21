@@ -60,6 +60,72 @@ namespace FluidFramework.SQLite.Context
         }
 
         /// <summary>
+        /// Obtains the database file from the connection string.
+        /// </summary>
+        public string GetDatabaseFile()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return null;
+                }
+
+                SQLiteConnectionStringBuilder csb = new SQLiteConnectionStringBuilder(ConnectionString);
+
+                return csb.DataSource;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Obtains the password from the connection string.
+        /// </summary>
+        public string GetPassword()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return null;
+                }
+
+                SQLiteConnectionStringBuilder csb = new SQLiteConnectionStringBuilder(ConnectionString);
+
+                return csb.Password;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Obtains the connection timeout from the connection string.
+        /// </summary>
+        public int GetDefaultTimeout()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return 30;
+                }
+
+                SQLiteConnectionStringBuilder csb = new SQLiteConnectionStringBuilder(ConnectionString);
+
+                return csb.DefaultTimeout;
+            }
+            catch
+            {
+                return 30;
+            }
+        }
+
+        /// <summary>
         /// Tests if the connection can be opened.
         /// </summary>
         public override bool TestConnection(int preferredConnectionTimeout = 15)

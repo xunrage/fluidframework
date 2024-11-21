@@ -100,6 +100,148 @@ namespace FluidFramework.SqlServer.Context
         }
 
         /// <summary>
+        /// Obtains the server name from the connection string.
+        /// </summary>
+        public string GetServerName()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                { 
+                    return null;
+                }
+
+                SqlConnectionStringBuilder csb = new SqlConnectionStringBuilder(ConnectionString);
+
+                return csb.DataSource;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Obtains the database name from the connection string.
+        /// </summary>
+        public string GetDatabaseName()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return null;
+                }
+
+                SqlConnectionStringBuilder csb = new SqlConnectionStringBuilder(ConnectionString);
+
+                return csb.InitialCatalog;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Obtains the integrated security value from the connection string.
+        /// </summary>
+        public bool GetIntegratedSecurity()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return false;
+                }
+
+                SqlConnectionStringBuilder csb = new SqlConnectionStringBuilder(ConnectionString);
+
+                return csb.IntegratedSecurity;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Obtains the user name from the connection string.
+        /// </summary>
+        public string GetUserName()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return null;
+                }
+
+                SqlConnectionStringBuilder csb = new SqlConnectionStringBuilder(ConnectionString);
+
+                if (csb.IntegratedSecurity)
+                {
+                    return null;
+                }
+
+                return csb.UserID;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Obtains the password from the connection string.
+        /// </summary>
+        public string GetPassword()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return null;
+                }
+
+                SqlConnectionStringBuilder csb = new SqlConnectionStringBuilder(ConnectionString);
+
+                if (csb.IntegratedSecurity)
+                {
+                    return null;
+                }
+
+                return csb.Password;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Obtains the connection timeout from the connection string.
+        /// </summary>
+        public int GetConnectionTimeout()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return 15;
+                }
+
+                SqlConnectionStringBuilder csb = new SqlConnectionStringBuilder(ConnectionString);
+
+                return csb.ConnectTimeout;
+            }
+            catch
+            {
+                return 15;
+            }
+        }
+
+        /// <summary>
         /// Tests if the connection can be opened.
         /// </summary>
         public override bool TestConnection(int preferredConnectionTimeout = 15)

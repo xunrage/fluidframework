@@ -63,6 +63,138 @@ namespace FluidFramework.MySql.Context
         }
 
         /// <summary>
+        /// Obtains the server name from the connection string.
+        /// </summary>
+        public string GetServer()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return null;
+                }
+
+                MySqlConnectionStringBuilder csb = new MySqlConnectionStringBuilder(ConnectionString);
+
+                return csb.Server;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Obtains the database name from the connection string.
+        /// </summary>
+        public string GetDatabase()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return null;
+                }
+
+                MySqlConnectionStringBuilder csb = new MySqlConnectionStringBuilder(ConnectionString);
+
+                return csb.Database;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Obtains the user name from the connection string.
+        /// </summary>
+        public string GetUserName()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return null;
+                }
+
+                MySqlConnectionStringBuilder csb = new MySqlConnectionStringBuilder(ConnectionString);               
+
+                return csb.UserID;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Obtains the password from the connection string.
+        /// </summary>
+        public string GetPassword()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return null;
+                }
+
+                MySqlConnectionStringBuilder csb = new MySqlConnectionStringBuilder(ConnectionString);
+
+                return csb.Password;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Obtains the connection timeout from the connection string.
+        /// </summary>
+        public int GetConnectionTimeout()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return 15;
+                }
+
+                MySqlConnectionStringBuilder csb = new MySqlConnectionStringBuilder(ConnectionString);
+
+                return Convert.ToInt32(csb.ConnectionTimeout);
+            }
+            catch
+            {
+                return 15;
+            }
+        }
+
+        /// <summary>
+        /// Obtains the port from the connection string.
+        /// </summary>
+        public int GetPort()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return 3306;
+                }
+
+                MySqlConnectionStringBuilder csb = new MySqlConnectionStringBuilder(ConnectionString);
+
+                return Convert.ToInt32(csb.Port);
+            }
+            catch
+            {
+                return 3306;
+            }
+        }
+
+        /// <summary>
         /// Tests if the connection can be opened.
         /// </summary>
         public override bool TestConnection(int preferredConnectionTimeout = 15)

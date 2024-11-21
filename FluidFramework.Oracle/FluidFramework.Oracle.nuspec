@@ -16,20 +16,21 @@
 	<repository type="git" url="https://github.com/xunrage/fluidframework.git" />	  
     <dependencies>
         <group targetFramework=".NETFramework4.8">
-            <dependency id="xunRAGE.FluidFramework" version="2.0.9079.0" exclude="Build,Analyzers" />
-            <dependency id="Microsoft.Bcl.AsyncInterfaces" version="8.0.0" exclude="Build,Analyzers" />
-            <dependency id="Oracle.ManagedDataAccess" version="23.6.1" exclude="Build,Analyzers" />
-            <dependency id="System.Buffers" version="4.5.1" exclude="Build,Analyzers" />
-			<dependency id="System.Diagnostics.DiagnosticSource" version="8.0.1" exclude="Build,Analyzers" />
-			<dependency id="System.Formats.Asn1" version="8.0.1" exclude="Build,Analyzers" />
-            <dependency id="System.Memory" version="4.5.5" exclude="Build,Analyzers" />
-            <dependency id="System.Numerics.Vectors" version="4.5.0" exclude="Build,Analyzers" />
-            <dependency id="System.Runtime.CompilerServices.Unsafe" version="6.0.0" exclude="Build,Analyzers" />
-            <dependency id="System.Text.Encodings.Web" version="8.0.0" exclude="Build,Analyzers" />
-            <dependency id="System.Text.Json" version="8.0.5" exclude="Build,Analyzers" />
-            <dependency id="System.Threading.Tasks.Extensions" version="4.5.4" exclude="Build,Analyzers" />
-            <dependency id="System.ValueTuple" version="4.5.0" exclude="Build,Analyzers" />
-        </group>
+            <dependency id="xunRAGE.FluidFramework" version="2.0.9092.0" exclude="Build,Analyzers" />
+			<dependency id="Microsoft.Bcl.AsyncInterfaces" version="9.0.0" exclude="Build,Analyzers" />
+			<dependency id="Oracle.ManagedDataAccess" version="23.6.1" exclude="Build,Analyzers" />
+			<dependency id="System.Buffers" version="4.6.0" exclude="Build,Analyzers" />
+			<dependency id="System.Diagnostics.DiagnosticSource" version="9.0.0" exclude="Build,Analyzers" />
+			<dependency id="System.Formats.Asn1" version="9.0.0" exclude="Build,Analyzers" />
+			<dependency id="System.IO.Pipelines" version="9.0.0" exclude="Build,Analyzers" />
+			<dependency id="System.Memory" version="4.6.0" exclude="Build,Analyzers" />
+			<dependency id="System.Numerics.Vectors" version="4.6.0" exclude="Build,Analyzers" />
+			<dependency id="System.Runtime.CompilerServices.Unsafe" version="6.1.0" exclude="Build,Analyzers" />
+			<dependency id="System.Text.Encodings.Web" version="9.0.0" exclude="Build,Analyzers" />
+			<dependency id="System.Text.Json" version="9.0.0" exclude="Build,Analyzers" />
+			<dependency id="System.Threading.Tasks.Extensions" version="4.6.0" exclude="Build,Analyzers" />
+			<dependency id="System.ValueTuple" version="4.5.0" exclude="Build,Analyzers" />
+		</group>
     </dependencies>
   </metadata>
 </package>

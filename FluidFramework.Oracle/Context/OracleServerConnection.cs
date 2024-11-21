@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using FluidFramework.Context;
 using Oracle.ManagedDataAccess.Client;
 
@@ -54,6 +55,94 @@ namespace FluidFramework.Oracle.Context
             this(databaseHostName, databaseServiceName, username, password, connectionTimeout, port)
         {
             CommandTimeout = commandTimeout;
+        }
+
+        /// <summary>
+        /// Obtains the data source from the connection string.
+        /// </summary>
+        public string GetDataSource()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return null;
+                }
+
+                OracleConnectionStringBuilder csb = new OracleConnectionStringBuilder(ConnectionString);
+
+                return csb.DataSource;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Obtains the user name from the connection string.
+        /// </summary>
+        public string GetUserName()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return null;
+                }
+
+                OracleConnectionStringBuilder csb = new OracleConnectionStringBuilder(ConnectionString);
+
+                return csb.UserID;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Obtains the password from the connection string.
+        /// </summary>
+        public string GetPassword()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return null;
+                }
+
+                OracleConnectionStringBuilder csb = new OracleConnectionStringBuilder(ConnectionString);
+
+                return csb.Password;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Obtains the connection timeout from the connection string.
+        /// </summary>
+        public int GetConnectionTimeout()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(ConnectionString))
+                {
+                    return 15;
+                }
+
+                OracleConnectionStringBuilder csb = new OracleConnectionStringBuilder(ConnectionString);
+
+                return csb.ConnectionTimeout;
+            }
+            catch
+            {
+                return 15;
+            }
         }
 
         /// <summary>
