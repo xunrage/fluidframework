@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
-  <metadata>
-    <id>xunRAGE.FluidFramework.SQLite</id>
-    <version>$version$</version>
-    <title>$title$</title>
-    <authors>xunRAGE</authors>
-    <owners>xunRAGE</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Extension library for SQLite database access. Requires .NET Framework 4.8.</description>
-    <releaseNotes>Version 2</releaseNotes>
-    <license type="expression">MIT</license>
-    <copyright>Copyright © 2016-2024 xunRAGE</copyright>
-    <tags>backend data framework</tags>
-	<projectUrl>https://github.com/xunrage/fluidframework</projectUrl>
-	<repository type="git" url="https://github.com/xunrage/fluidframework.git" />
-	<dependencies>
-        <group targetFramework=".NETFramework4.8">
-            <dependency id="xunRAGE.FluidFramework" version="2.0.9092.0" exclude="Build,Analyzers" />
-            <dependency id="Stub.System.Data.SQLite.Core.NetFramework" version="1.0.119.0" exclude="Build,Analyzers" />
-            <dependency id="System.Data.SQLite.Core" version="1.0.119.0" exclude="Build,Analyzers" />
-        </group>
-    </dependencies>
-  </metadata>
+    <metadata>
+        <id>xunRAGE.FluidFramework.SQLite</id>
+        <version>$version$</version>
+        <title>$title$</title>
+        <authors>xunRAGE</authors>
+        <owners>xunRAGE</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Extension library for SQLite database access. Requires .NET Framework 4.8.</description>
+        <releaseNotes>Version 2</releaseNotes>
+        <license type="expression">MIT</license>
+        <copyright>Copyright © 2016-2025 xunRAGE</copyright>
+        <tags>backend data framework</tags>
+        <projectUrl>https://github.com/xunrage/fluidframework</projectUrl>
+        <repository type="git" url="https://github.com/xunrage/fluidframework.git" />
+        <readme>readme.md</readme>
+        <dependencies>
+            <group targetFramework=".NETFramework4.8">
+                <dependency id="xunRAGE.FluidFramework" version="2.0.9305.0" exclude="Build,Analyzers" />
+                <dependency id="Stub.System.Data.SQLite.Core.NetFramework" version="1.0.119.0" exclude="Build,Analyzers" />
+                <dependency id="System.Data.SQLite.Core" version="1.0.119.0" exclude="Build,Analyzers" />
+            </group>
+        </dependencies>
+    </metadata>
+	<files>
+		<file src="readme.md" target="\" />
+	</files>
 </package>

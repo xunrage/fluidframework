@@ -105,6 +105,9 @@
     <Compile Include="Utilities\GenericTools.cs" />
     <Compile Include="Utilities\SortOrder.cs" />
     <Compile Include="Utilities\StringProtect.cs" />
+    <None Include="readme.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SqlServer\Data\SqlServerDataService.resx">

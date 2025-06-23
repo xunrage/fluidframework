@@ -66,6 +66,9 @@
     <None Include="app.config" />
     <None Include="FluidFramework.SQLite.nuspec" />
     <None Include="packages.config" />
+    <None Include="readme.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

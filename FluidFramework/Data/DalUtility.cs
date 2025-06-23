@@ -12,68 +12,114 @@ namespace FluidFramework.Data
         /// <summary>
         /// The audit user column
         /// </summary>
-        public static string userColumn = "AuditUser";
+        public static string userColumnDefault = "AuditUser";
 
         /// <summary>
         /// The audit date column
         /// </summary>
-        public static string dateColumn = "AuditDate";
+        public static string dateColumnDefault = "AuditDate";
 
         /// <summary>
         /// The audit work station column
         /// </summary>
-        public static string workColumn = "AuditWorkStation";
+        public static string workColumnDefault = "AuditWorkStation";
+
+        private static User GetUser(bool check = true)
+        {
+            User user = ClientContext.Instance.Properties.CurrentUser;
+
+            if (user == null)
+            {
+                throw new Exception("Audit failed.");
+            }
+
+            if (check)
+            {
+                if (String.IsNullOrEmpty(user.UserName) || String.IsNullOrEmpty(user.WorkStation))
+                {
+                    throw new Exception("Audit failed.");
+                }
+            }
+
+            return user;
+        }
+
+        private static (string userColumn, string dateColumn, string workColumn) PrepareColumns(string userColumn, string dateColumn, string workColumn)
+        {
+            if (userColumn == null)
+            {
+                userColumn = userColumnDefault;
+            }
+
+            if (dateColumn == null)
+            {
+                dateColumn = dateColumnDefault;
+            }
+
+            if (workColumn == null)
+            {
+                workColumn = workColumnDefault;
+            }
+
+            return (userColumn, dateColumn, workColumn);
+        }
 
         /// <summary>
         /// Fills the audit for all the added or modified rows in the given dataset.
         /// </summary>
-        public static DataSet AddAudit(DataSet ds, bool forced = false)
+        public static DataSet AddAudit(DataSet dataset, bool forced = false,
+                                       string userColumn = null, string dateColumn = null, string workColumn = null)
         {
-            User user = ClientContext.Instance.Properties.CurrentUser;
-            if (user == null || String.IsNullOrEmpty(user.UserName) || String.IsNullOrEmpty(user.WorkStation)) throw new Exception("Audit failed.");
-            foreach (DataTable dt in ds.Tables) AddAudit(dt, forced, false);
-            return ds;
+            (userColumn, dateColumn, workColumn) = PrepareColumns(userColumn, dateColumn, workColumn);            
+            
+            GetUser();
+            
+            foreach (DataTable table in dataset.Tables) AddAudit(table, forced, false, userColumn, dateColumn, workColumn);
+
+            return dataset;
         }
 
         /// <summary>
         /// Fills the audit for all the added or modified rows in the given data table.
         /// </summary>
-        public static DataSet AddAudit(DataTable dt, bool forced = false, bool check = true)
+        public static DataSet AddAudit(DataTable table, bool forced = false, bool check = true,
+                                       string userColumn = null, string dateColumn = null, string workColumn = null)
         {
-            if (!dt.Columns.Contains(userColumn) && !dt.Columns.Contains(dateColumn) && !dt.Columns.Contains(workColumn)) return dt.DataSet;
+            (userColumn, dateColumn, workColumn) = PrepareColumns(userColumn, dateColumn, workColumn);
 
-            User user = ClientContext.Instance.Properties.CurrentUser;
-            if(user == null) throw new Exception("Audit failed.");
-            if (check)
-            {
-                if (String.IsNullOrEmpty(user.UserName) || String.IsNullOrEmpty(user.WorkStation)) throw new Exception("Audit failed.");
-            }
+            if (!table.Columns.Contains(userColumn) && !table.Columns.Contains(dateColumn) && !table.Columns.Contains(workColumn)) return table.DataSet;
 
-            foreach (DataRow row in dt.Select(null, null, forced ? DataViewRowState.CurrentRows : DataViewRowState.Added | DataViewRowState.ModifiedCurrent))
+            User user = GetUser(check);
+
+            foreach (DataRow row in table.Select(null, null, forced ? DataViewRowState.CurrentRows : DataViewRowState.Added | DataViewRowState.ModifiedCurrent))
             {
-                if (dt.Columns.Contains(userColumn))
+                if (table.Columns.Contains(userColumn))
                 {
                     row[userColumn] = user.UserName;
                 }
-                if (dt.Columns.Contains(dateColumn))
+                if (table.Columns.Contains(dateColumn))
                 {
                     row[dateColumn] = DateTime.Now;
                 }
-                if (dt.Columns.Contains(workColumn))
+                if (table.Columns.Contains(workColumn))
                 {
                     row[workColumn] = user.WorkStation;
                 }
             }
-            return dt.DataSet;
+
+            return table.DataSet;
         }
 
         /// <summary>
         /// Fills the audit for the given row. It is useful when the row is added.
         /// </summary>        
-        public static void AddAudit(DataRow row)
+        public static void AddAudit(DataRow row,
+                                    string userColumn = null, string dateColumn = null, string workColumn = null)
         {
-            User user = ClientContext.Instance.Properties.CurrentUser;
-            if (user == null || String.IsNullOrEmpty(user.UserName) || String.IsNullOrEmpty(user.WorkStation)) throw new Exception("Audit failed.");
+            (userColumn, dateColumn, workColumn) = PrepareColumns(userColumn, dateColumn, workColumn);
+
+            User user = GetUser();
+
             if (row.Table == null)
             {
                 try

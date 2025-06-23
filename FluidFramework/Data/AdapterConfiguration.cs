@@ -44,12 +44,18 @@ namespace FluidFramework.Data
         /// </summary>
         public int? ExpectedRows { get; set; }
 
+        /// <summary>
+        /// The filter to apply when the rows are updated.
+        /// </summary>
+        public string UpdateFilter { get; set; }
+
         private void SetDefaults()
         {
             Action = SqlAction.None;
             Priority = SqlPriority.OnUpdate;
             Command = null;
             ExpectedRows = null;
+            UpdateFilter = null;
         }
 
         /// <summary>

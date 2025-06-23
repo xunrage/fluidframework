@@ -277,7 +277,7 @@ namespace FluidFramework.MySql.Data
                     if (ac.Action == SqlAction.Update)
                     {
                         sqlTableName = ac.TableName;
-                        DataRow[] targetRows = ac.Dataset.Tables[sqlTableName].Select(null, null, isUpdate ? DataViewRowState.Added | DataViewRowState.ModifiedCurrent : DataViewRowState.Deleted);
+                        DataRow[] targetRows = ac.Dataset.Tables[sqlTableName].Select(ac.UpdateFilter, null, isUpdate ? DataViewRowState.Added | DataViewRowState.ModifiedCurrent : DataViewRowState.Deleted);
                         if (targetRows.Length == 0)
                         {
                             continue;

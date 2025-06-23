@@ -347,7 +347,7 @@ namespace FluidFramework.MySql.Data
         /// </summary>
         public MySqlFluidAdapter CreateSelect(DataTable table, List<string> selectColumns = null, string tableAlias = null, string databaseTableName = null)
         {
-            if (selectColumns == null) selectColumns = GenericTools.AllColumns(table);
+            if (selectColumns == null) selectColumns = DatasetHelper.AllColumns(table);
             if (databaseTableName == null) databaseTableName = table.TableName;
             return CreateSelect(databaseTableName, selectColumns, tableAlias, table.TableName);
         }
