@@ -1,12 +1,12 @@
-﻿using System;
+﻿using FluidFramework.Context;
+using FluidFramework.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.EnterpriseServices;
 using System.Linq;
-using FluidFramework.Context;
-using FluidFramework.Data;
 
 namespace FluidFramework.SqlServer.Data
 {
@@ -348,14 +348,23 @@ namespace FluidFramework.SqlServer.Data
                 // Prepare
                 foreach (SqlServerAdapterConfiguration ac in listAdapterConfiguration)
                 {
-                    if (ac.Action != SqlAction.Run && ac.Adapter == null)
+                    if (ac.Action == SqlAction.None)
+                    {
+                        throw new Exception("Action is unknown.");
+                    }
+
+                    if (ac.Action == SqlAction.Run)
+                    {
+                        continue;
+                    }
+
+                    if (ac.Adapter == null)
                     {
                         throw new Exception("No adapter was provided.");
                     }
 
                     switch (ac.Action)
                     {
-                        case SqlAction.None: throw new Exception("Action is unknown.");
                         case SqlAction.Get:
                         case SqlAction.Execute:
                             SetParameters(ac.Adapter.SelectCommand, ac.ParameterList);
@@ -394,6 +403,7 @@ namespace FluidFramework.SqlServer.Data
                     {
                         case SqlAction.Get:
                         case SqlAction.Execute:
+                            UnsetParameters(ac.Adapter.SelectCommand, ac.ParameterList);
                             UnsetCommand(ac.Adapter.SelectCommand);
                             break;
                         case SqlAction.Update:
@@ -582,6 +592,23 @@ namespace FluidFramework.SqlServer.Data
                     if (sqlCommand.Parameters.Contains(parameterInfo.Parameter))
                     {
                         sqlCommand.Parameters[parameterInfo.Parameter].Value = parameterInfo.Value;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Resets the sql command parameters specified in the parameter info list.
+        /// </summary>
+        protected void UnsetParameters(SqlCommand sqlCommand, List<ParameterInfo> parameterList)
+        {
+            if (parameterList != null)
+            {
+                foreach (ParameterInfo parameterInfo in parameterList)
+                {
+                    if (sqlCommand.Parameters.Contains(parameterInfo.Parameter))
+                    {
+                        sqlCommand.Parameters[parameterInfo.Parameter].Value = null;
                     }
                 }
             }

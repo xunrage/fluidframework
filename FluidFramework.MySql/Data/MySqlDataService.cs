@@ -1,11 +1,11 @@
-﻿using System;
+﻿using FluidFramework.Context;
+using FluidFramework.Data;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
-using FluidFramework.Context;
-using FluidFramework.Data;
-using MySql.Data.MySqlClient;
 
 namespace FluidFramework.MySql.Data
 {
@@ -347,14 +347,23 @@ namespace FluidFramework.MySql.Data
                 // Prepare
                 foreach (MySqlAdapterConfiguration ac in listAdapterConfiguration)
                 {
-                    if (ac.Action != SqlAction.Run && ac.Adapter == null)
+                    if (ac.Action == SqlAction.None)
+                    {
+                        throw new Exception("Action is unknown.");
+                    }
+
+                    if (ac.Action == SqlAction.Run)
+                    {
+                        continue;
+                    }
+
+                    if (ac.Adapter == null)
                     {
                         throw new Exception("No adapter was provided.");
                     }
 
                     switch (ac.Action)
                     {
-                        case SqlAction.None: throw new Exception("Action is unknown.");
                         case SqlAction.Get:
                         case SqlAction.Execute:
                             SetParameters(ac.Adapter.SelectCommand, ac.ParameterList);
@@ -393,6 +402,7 @@ namespace FluidFramework.MySql.Data
                     {
                         case SqlAction.Get:
                         case SqlAction.Execute:
+                            UnsetParameters(ac.Adapter.SelectCommand, ac.ParameterList);
                             UnsetCommand(ac.Adapter.SelectCommand);
                             break;
                         case SqlAction.Update:
@@ -571,6 +581,23 @@ namespace FluidFramework.MySql.Data
                     if (sqlCommand.Parameters.Contains(parameterInfo.Parameter))
                     {
                         sqlCommand.Parameters[parameterInfo.Parameter].Value = parameterInfo.Value;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Resets the sql command parameters specified in the parameter info list.
+        /// </summary>
+        protected void UnsetParameters(MySqlCommand sqlCommand, List<ParameterInfo> parameterList)
+        {
+            if (parameterList != null)
+            {
+                foreach (ParameterInfo parameterInfo in parameterList)
+                {
+                    if (sqlCommand.Parameters.Contains(parameterInfo.Parameter))
+                    {
+                        sqlCommand.Parameters[parameterInfo.Parameter].Value = null;
                     }
                 }
             }

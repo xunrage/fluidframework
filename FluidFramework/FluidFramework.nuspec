@@ -7,7 +7,7 @@
         <authors>xunRAGE</authors>
         <owners>xunRAGE</owners>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Core library for database access. Requires .NET Framework 4.8.</description>
+        <description>Base library for SQL Server database access. Requires .NET Framework 4.8.</description>
         <releaseNotes>Version 2</releaseNotes>
         <license type="expression">MIT</license>
         <copyright>Copyright © 2016-2025 xunRAGE</copyright>

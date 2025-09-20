@@ -95,6 +95,49 @@ namespace FluidFramework.Utilities
         }
 
         /// <summary>
+        /// Adds a column to the table and the values for all the rows.
+        /// </summary>
+        public static void PushColumn(DataTable table, string column, Type columnType, List<object> values)
+        {
+            if (!table.Columns.Contains(column))
+            {
+                table.Columns.Add(new DataColumn(column, columnType));
+            }
+
+            if (values != null)
+            {
+                int index = 0;
+                foreach (object value in values)
+                {
+                    DataRow row;
+                    if (table.Rows.Count < index + 1)
+                    {
+                        row = table.NewRow();
+                        table.Rows.Add(row);
+                    }
+                    else
+                    {                        
+                        row = table.Rows[index];
+                    }
+
+                    if (row.RowState != DataRowState.Deleted)
+                    {
+                        if (value == null)
+                        {
+                            row[column] = DBNull.Value;
+                        }
+                        else
+                        {
+                            row[column] = value;
+                        }
+                    }
+
+                    index++;
+                }
+            }
+        }
+
+        /// <summary>
         /// Converts the Guid, String and DateTime columns values from DBNull to Empty.
         /// </summary>
         public static void NullToEmpty(DataRow row, List<string> columns)
