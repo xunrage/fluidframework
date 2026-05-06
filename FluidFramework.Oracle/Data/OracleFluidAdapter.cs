@@ -1,10 +1,10 @@
-﻿using System;
+﻿using FluidFramework.Utilities;
+using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
-using FluidFramework.Utilities;
-using Oracle.ManagedDataAccess.Client;
 
 namespace FluidFramework.Oracle.Data
 {
@@ -468,6 +468,16 @@ namespace FluidFramework.Oracle.Data
         {
             Adapter.SelectCommand = new OracleCommand(query);
             Adapter.SelectCommand.CommandType = CommandType.Text;
+            return this;
+        }
+
+        /// <summary>
+        /// Creates a select command with the given stored procedure name.
+        /// </summary>
+        public OracleFluidAdapter CreateExecuteForProcedure(string procedureName)
+        {
+            Adapter.SelectCommand = new OracleCommand(procedureName);
+            Adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             return this;
         }
 

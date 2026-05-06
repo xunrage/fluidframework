@@ -559,6 +559,16 @@ namespace FluidFramework.SqlServer.Data
             return this;
         }
 
+        /// <summary>
+        /// Creates a select command with the given stored procedure name.
+        /// </summary>
+        public SqlServerFluidAdapter CreateExecuteForProcedure(string procedureName)
+        {
+            Adapter.SelectCommand = new SqlCommand(procedureName);
+            Adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            return this;
+        }
+
         #endregion
     }
 }

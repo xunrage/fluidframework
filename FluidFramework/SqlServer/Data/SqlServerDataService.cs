@@ -591,7 +591,7 @@ namespace FluidFramework.SqlServer.Data
                 {
                     if (sqlCommand.Parameters.Contains(parameterInfo.Parameter))
                     {
-                        sqlCommand.Parameters[parameterInfo.Parameter].Value = parameterInfo.Value;
+                        sqlCommand.Parameters[parameterInfo.Parameter].Value = parameterInfo.Value ?? DBNull.Value;
                     }
                 }
             }
@@ -608,7 +608,12 @@ namespace FluidFramework.SqlServer.Data
                 {
                     if (sqlCommand.Parameters.Contains(parameterInfo.Parameter))
                     {
-                        sqlCommand.Parameters[parameterInfo.Parameter].Value = null;
+                        SqlParameter parameter = sqlCommand.Parameters[parameterInfo.Parameter];
+
+                        if (parameter.Direction == ParameterDirection.Input)
+                        {
+                            parameter.Value = null;
+                        }
                     }
                 }
             }

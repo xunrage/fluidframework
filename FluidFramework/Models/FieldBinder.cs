@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 
@@ -7,7 +8,12 @@ namespace FluidFramework.Models
     /// <summary>
     /// Class used to bind from a property to a data column.
     /// </summary>
-    public class ObjectPipe : INotifyPropertyChanged
+    /// <typeparam name="T">
+    /// The CLR type of the column. For value-type columns that may contain DBNull,
+    /// pass the nullable form (e.g. <c>Guid?</c>, <c>DateTime?</c>, <c>int?</c>).
+    /// Reference types (e.g. <c>string</c>) can be passed directly.
+    /// </typeparam>
+    public class FieldBinder<T> : INotifyPropertyChanged
     {
         /// <summary>
         /// Event raised when the value changes.
@@ -17,12 +23,9 @@ namespace FluidFramework.Models
         /// <summary>
         /// Notify the change of value.
         /// </summary>
-        protected void NotifyPropertyChanged(String info)
+        protected void NotifyPropertyChanged(string info)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
         }
 
         /// <summary>
@@ -38,12 +41,12 @@ namespace FluidFramework.Models
         /// <summary>
         /// Constructor without parameters
         /// </summary>
-        public ObjectPipe() { }
+        public FieldBinder() { }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public ObjectPipe(DataRow row, string field)
+        public FieldBinder(DataRow row, string field)
         {
             SourceRow = row;
             SourceField = field;
@@ -52,9 +55,9 @@ namespace FluidFramework.Models
         /// <summary>
         /// Gets the value.
         /// </summary>
-        protected virtual object GetValue()
+        protected virtual T GetValue()
         {
-            return SourceRow[SourceField];
+            return (T)SourceRow[SourceField];
         }
 
         /// <summary>
@@ -62,43 +65,31 @@ namespace FluidFramework.Models
         /// </summary>
         protected virtual void SetValue(object value)
         {
-            SourceRow[SourceField] = value;
-            NotifyPropertyChanged("Field");
+            SourceRow[SourceField] = value ?? DBNull.Value;
+            NotifyPropertyChanged(nameof(Field));
         }
 
         /// <summary>
         /// The value
         /// </summary>
-        public object Field
+        public T Field
         {
             get
             {
-                if (SourceRow.IsNull(SourceField)) return null;
+                if (SourceRow.IsNull(SourceField)) return default(T);
                 return GetValue();
             }
 
             set
             {
-                if (value != null)
+                if (value == null)
                 {
-                    if (SourceRow.IsNull(SourceField))
-                    {
-                        SetValue(value);
-                    }
-                    else
-                    {
-                        if (!SourceRow[SourceField].Equals(value))
-                        {
-                            SetValue(value);
-                        }
-                    }
+                    if (!SourceRow.IsNull(SourceField)) SetValue(null);
                 }
-                else
+                else if (SourceRow.IsNull(SourceField) ||
+                         !EqualityComparer<T>.Default.Equals(GetValue(), value))
                 {
-                    if (!SourceRow.IsNull(SourceField))
-                    {
-                        SetValue(DBNull.Value);
-                    }
+                    SetValue(value);
                 }
             }
         }

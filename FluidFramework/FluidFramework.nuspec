@@ -10,7 +10,7 @@
         <description>Base library for SQL Server database access. Requires .NET Framework 4.8.</description>
         <releaseNotes>Version 2</releaseNotes>
         <license type="expression">MIT</license>
-        <copyright>Copyright © 2016-2025 xunRAGE</copyright>
+        <copyright>Copyright © 2016-2026 xunRAGE</copyright>
         <tags>backend data framework</tags>
         <projectUrl>https://github.com/xunrage/fluidframework</projectUrl>
         <repository type="git" url="https://github.com/xunrage/fluidframework.git" />

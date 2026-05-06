@@ -1,11 +1,11 @@
-﻿using System;
+﻿using FluidFramework.Utilities;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
-using FluidFramework.Utilities;
-using MySql.Data.MySqlClient;
 
 namespace FluidFramework.MySql.Data
 {
@@ -539,6 +539,16 @@ namespace FluidFramework.MySql.Data
         {
             Adapter.SelectCommand = new MySqlCommand(query);
             Adapter.SelectCommand.CommandType = CommandType.Text;
+            return this;
+        }
+
+        /// <summary>
+        /// Creates a select command with the given stored procedure name.
+        /// </summary>
+        public MySqlFluidAdapter CreateExecuteForProcedure(string procedureName)
+        {
+            Adapter.SelectCommand = new MySqlCommand(procedureName);
+            Adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             return this;
         }
 
